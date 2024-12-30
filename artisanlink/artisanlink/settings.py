@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sgabbw3##t5r@p^9z#9$ts=_i1yzx6v$6r*l=g5gcvj!$6x5ck'
+SECRET_KEY = 'django-insecure-qlrhnvtr9-@$rftrc)&-#tl%#tys9!rqt-o2&u#==%jyg)@kk8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +39,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'corsheaders',
+    'users',
+    'services',
+    'bookings',
+    'payments',
+    'reviews',
 ]
+
+MTN_MOMO = {
+    'PRIMARY_KEY': 'your_primary_key',
+    'USER_ID': 'your_user_id',
+    'API_KEY': 'your_api_key',
+    'COLLECTION_URL': 'https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay',
+    'TOKEN_URL': 'https://sandbox.momodeveloper.mtn.com/collection/token/',
+    'CALLBACK_URL': 'https://yourwebsite.com/payment/callback/',
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,9 +67,35 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+]
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Loaded from .env
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Loaded from .env
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Add frontend origin
 ]
 
 ROOT_URLCONF = 'artisanlink.urls'
+
+AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {
