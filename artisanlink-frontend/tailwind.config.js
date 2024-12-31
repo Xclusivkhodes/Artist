@@ -9,7 +9,7 @@ export default {
     secondary: '#91398b',
     accent: '#502779',
     background: '#f9aad0',
-    border: '#E1E8ED',
+    border: '#91398b',
     text: '\FFFFFF',
   },
     extend: {
