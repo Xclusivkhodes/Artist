@@ -38,6 +38,8 @@ const LandingPage = () => {
           <div>
             <Link to='/homepage'>
               <button className='border-none bg-accent shadow-2xl w-[100%] mt-5 font-poppins-light p-3.5 text-text text-xl rounded-2xl tracking-wide'>Login</button>
+            </Link>
+            <Link to='/arthomepage'>
               <button className='border-none shadow-2xl w-[100%] mt-5 font-poppins-light p-3.5 text-xl rounded-2xl tracking-wide flex justify-center  bg-primary text-secondary'> <img src={Google} alt="" width={45} height={45} className='right-10' /> Login with Google</button>
             </Link>
           </div>

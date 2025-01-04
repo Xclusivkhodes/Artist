@@ -2,12 +2,19 @@ import MapView from "../components/MapView"
 import Search from "../assets/Search.svg"
 import UserCard from "../components/UserCard"
 import Carpenter from "../assets/Carpenter.svg"
+import image from "../assets/image copy.png"
 
 const HomePage = () => {
+  const users = [
+    { name: 'Forson Peter', image: image, distance: 20, profession: 'Carpenter', rating: 5 },
+    { name: 'John Doe', image: image, distance: 15, profession: 'Mechanic', rating: 4.5 },
+    { name: 'Jane Smith', image: image, distance: 10, profession: 'Tailor', rating: 4 },
+  ];
+
   return (
     <div>
       <div className="flex">
-       <section className="w-[50%]  ">
+      <section className="w-[50%]  ">
         <MapView />
        </section>
        <section className="bg-primary w-[50%]">
@@ -29,9 +36,18 @@ const HomePage = () => {
          <img src={Search} alt="" width={40} height={40} className="p-0 m-0 relative left-[7%]" />
          <input type="search" className="bg-accent w-[80%] p-5 rounded-full m-0" />
         </div>
-        <div className="justify-center flex">
-         <UserCard image={Search} name='hello' />
-        </div>
+        <div className="w-[100%] h-[40%] flex overflow-y-auto no-scrollbar flex-col items-center ">
+            {users.map((user, index) => (
+              <UserCard
+                key={index}
+                name={user.name}
+                image={user.image}
+                distance={user.distance}
+                profession={user.profession}
+                rating={user.rating}
+              />
+            ))}
+          </div>
        </section>
       </div>
     </div>
