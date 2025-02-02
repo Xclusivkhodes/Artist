@@ -5,14 +5,14 @@ import 'leaflet/dist/leaflet.css';
 // Define a functional component named MapView
 const MapView = () => {
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "100vh", width: "100%" }}>
+    <MapContainer center={[5.545923, -0.25731]} zoom={13} style={{ height: "100vh", width: "100%" }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={[51.505, -0.09]}>
+      <Marker position={[5.545923, -0.25731]}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          This is you
         </Popup>
       </Marker>
     </MapContainer>

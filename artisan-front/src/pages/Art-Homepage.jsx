@@ -1,6 +1,7 @@
 import React from 'react'
 import image from '../assets/image copy.png'
 import StarGold from '../assets/StarGold.svg'
+import Post from '../components/Post'
 
 const ArtHomepage = () => {
   return (
@@ -30,8 +31,11 @@ const ArtHomepage = () => {
       </section>
       <section>
       <div className=' w-full h-[1px] relative top-[20%] bg-[#d9d9d9] border-text'>
-
+        <div>
+        <Post />
       </div>
+      </div>
+      
       </section>
       
     </div>
